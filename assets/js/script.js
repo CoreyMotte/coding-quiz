@@ -26,10 +26,7 @@ var questions = [
 
 var score = 0;
 
-var button1;
-var button2;
-var button3;
-var button4;
-
-var questionsEl = document.querySelector(#question);
-var highscoresEl = document.querySelector(#highscores);
+var answerOne = document.querySelector(#choice1);
+var answerTwo = document.querySelector(#choice2);
+var answerThree = document.querySelector(#choice3);
+var answerFour = document.querySelector(#choice4);
