@@ -64,11 +64,11 @@ function createQuestion() {
             answerButton.setAttribute("value", answer);
             answerButton.setAttribute("class", "btn btn-primary");
             answerButton.addEventListener("click", answerCheck);
-        });  
+        });
     } else {
         endQuiz();
     }
-    
+
 }
 
 // function to remove children of quizform once question is answered
@@ -96,7 +96,7 @@ function answerCheck(event) {
 }
 
 // function to end quiz, clear question/answers, and display time remaining and score
-function endQuiz(){
+function endQuiz() {
     clearQuestion();
     console.log("You did it idiot");
     clearInterval(handleTimer);
@@ -104,6 +104,15 @@ function endQuiz(){
     var completeText = document.createElement("h3");
     completeText.textContent = "Congratulations! Your final score was: " + score.toString();
     quizForm.appendChild(completeText);
+    setLocalStorage();
+}
+
+function setLocalStorage () {
+    var topScores = localStorage.getItem("scoreList");
+    let listOfScores = topScores ? JSON.parse(topScores) : [];
+    listOfScores.push({ score: score });
+    localStorage.setItem("scoreList", JSON.stringify(listOfScores));
+    console.log(JSON.parse(localStorage.getItem('scoreList')))
 }
 
 createQuestion();
