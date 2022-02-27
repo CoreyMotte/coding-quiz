@@ -28,6 +28,7 @@ var questions = [
 // declare variables for score, time
 // declare variables for timer interval and current question
 var score = 0;
+var userName = "";
 var timeLeft = 60;
 var currentQuestionPos = 0;
 
@@ -102,15 +103,20 @@ function endQuiz() {
     clearInterval(handleTimer);
     timeText.textContent = "You finished with " + timeLeft.toString() + " seconds remaining.";
     var completeText = document.createElement("h3");
-    completeText.textContent = "Congratulations! Your final score was: " + score.toString();
+    userName = prompt("Please enter your name:");
+    completeText.textContent = "Congratulations, " + userName + "! Your final score was: " + score;
     quizForm.appendChild(completeText);
     setLocalStorage();
+    setInterval(function() {
+        window.location.href = "index.html"
+    }, 5000);
 }
 
+// update local storage at the end of the quiz
 function setLocalStorage () {
     var topScores = localStorage.getItem("scoreList");
     let listOfScores = topScores ? JSON.parse(topScores) : [];
-    listOfScores.push({ score: score });
+    listOfScores.push({ name: userName, score: score });
     localStorage.setItem("scoreList", JSON.stringify(listOfScores));
     console.log(JSON.parse(localStorage.getItem('scoreList')))
 }
