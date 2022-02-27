@@ -1,27 +1,27 @@
 // array to hold questions, choices, and correct answers
 var questions = [
     {
-        text: "Insert question 1 here",
-        choices: ["option1", "option2", "option3", "option4"],
-        answer: "option3"
+        text: "Inside which HTML element do we put the JavaScript?",
+        choices: ["<scripting>", "<script>", "<js>", "<javascript>"],
+        answer: "<script>"
     },
 
     {
-        text: "Insert question 2 here",
-        choices: ["option", "option", "option", "option"],
-        answer: "option"
+        text: "The condition within an if/else statement is enclosed within",
+        choices: ["Quotes", "Curly brackets", "Parentheses", "Square brackets"],
+        answer: "Parentheses"
     },
 
     {
-        text: "Insert question 3 here",
-        choices: ["option", "option", "option", "option"],
-        answer: "option"
+        text: "Arrays in Javascript can be used to store:",
+        choices: ["Numbers and strings", "Other arrays", "Booleans", "All of the above"],
+        answer: "All of the above"
     },
 
     {
-        text: "Insert question 4 here",
-        choices: ["option", "option", "option", "option"],
-        answer: "option"
+        text: "String values must be enclosed within:",
+        choices: ["Quotations", "Parentheses", "Curly brackets", "Square braackets"],
+        answer: "Quotations"
     },
 ]
 
@@ -41,6 +41,7 @@ var questionContent = document.getElementById("title");
 var quizForm = document.getElementById("quizform");
 var timer = document.getElementById("timeremaining");
 var timeText = document.getElementById("timetext");
+var timeWrap = document.getElementById("timeWrapper");
 
 // decrement timer every second and update text on timer span
 var handleTimer = setInterval(function () {
@@ -103,10 +104,23 @@ function endQuiz() {
     clearInterval(handleTimer);
     timeText.textContent = "You finished with " + timeLeft.toString() + " seconds remaining.";
     var completeText = document.createElement("h3");
+    var redirectText = document.createElement("h4");
     userName = prompt("Please enter your name:");
     completeText.textContent = "Congratulations, " + userName + "! Your final score was: " + score;
+    
+    quizForm.setAttribute("class", "homeWrapper")
+    timeWrap.setAttribute("class", "homeWrapper")
     quizForm.appendChild(completeText);
+    quizForm.appendChild(redirectText);
     setLocalStorage();
+
+    var timeRemaining = 5;
+    redirectText.textContent = "You will be redirected to the homepage in 5 seconds."
+    setInterval(function() {
+        timeRemaining--;
+        redirectText.textContent = "You will be redirected to the homepage in " + timeRemaining.toString() + " seconds.";
+    }, 1000);
+
     setInterval(function() {
         window.location.href = "index.html"
     }, 5000);

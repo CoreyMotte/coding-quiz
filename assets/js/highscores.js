@@ -6,7 +6,7 @@ function createLeaderboard() {
         return b.score - a.score;
     })
 
-    for (var i = 0; i < 5; i++) {
+    for (var i = 0; i < 10; i++) {
         var tr = userScores.appendChild(document.createElement("tr"))
         var th = document.createElement("th")
         th.setAttribute("scope", "row");
