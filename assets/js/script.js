@@ -59,14 +59,15 @@ function createQuestion() {
     if (currentQuestionPos < questions.length) {
         questionContent.textContent = questions[currentQuestionPos].text;
 
-        questions[currentQuestionPos].choices.map((answer) => {
+        // for loop to create an answer button for each choice
+        for (var i = 0; i < questions.length; i++){
             var answerButton = document.createElement("button");
-            answerButton.textContent = answer;
+            answerButton.textContent = questions[currentQuestionPos].choices[i];
             quizForm.appendChild(answerButton);
-            answerButton.setAttribute("value", answer);
+            answerButton.setAttribute("value", questions[currentQuestionPos].choices[i]);
             answerButton.setAttribute("class", "btn btn-primary");
             answerButton.addEventListener("click", answerCheck);
-        });
+        }
     } else {
         endQuiz();
     }
